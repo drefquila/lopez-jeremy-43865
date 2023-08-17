@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series</title>
+</head>Eliminar serie
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <header><h2>Estas seguro de querer eliminar la serie {{object.nombre}}</h2></header>
+        <button type="submit">Eliminar</button>
+    </form>
+</body>
+</html>

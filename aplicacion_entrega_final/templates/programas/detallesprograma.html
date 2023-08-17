@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Programa</title>
+    <style>
+        body {
+            text-align:left;
+            background-color: dimgray;
+        }
+        .contenedor {
+            display: flex;
+            justify-content:left;
+            align-items:flex-start;
+            padding:10px;
+        }
+        .detalles {
+            max-width:50%;
+            text-align:left;
+            padding-right: 20px;
+        }
+        .imagen {
+            max-width: 50%;
+            text-align:right;
+            padding-left: 20px;
+        }
+        .sinapsis {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Info</h1>
+    <hr>
+    <div class="contenedor">
+        <div class="detalles">
+            <h3>Nombre:{{ object.nombre }}</h3>
+            <h3>Director:{{ object.director }}</h3>
+            <h3>Fecha de emision:{{ object.fecha_de_emision }}</h3>
+            <h3>Temporadas:{{ object.temporadas }}</h3>
+            <h3>Capitulos:{{object.capitulos}}</h3>
+            <h3>Elenco:{{ object.elenco }}</h3>
+            <div class="sinapsis">
+                <h3>Sinopsis:</h3>
+                <p><h3>{{ object.sinopsis }}</h3></p>
+            </div>
+        </div>
+        <div class="imagen">
+            {% if object.imagen %}
+                <img src="{{ object.imagen.url }}" alt="Imagen de la película">
+            {% else %}
+                <p>No hay imagen disponible</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

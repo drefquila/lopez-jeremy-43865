@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head><h1 style="color: aquamarine;
+position: absolute;
+top: -36px;
+left: 530px;
+font-size:60px;
+border: powderblue;
+border-style:solid;
+border-width: 5px;
+background-color:dimgray;">Inicio</h1>
+<div style="display: flex; align-items: center;">
+    {% if user.is_authenticated %}
+    <h2>bienvenido {{user.username}}</h2>
+    <div><img style="margin-left: 5px;"src="{{request.session.avatar}}" height="60px"></div>
+    {% endif %}
+</div>
+<hr>
+<body style="background-color:darkslateblue" >
+    <header><h2>Acciones De Usuario</h2></header>
+    <div>
+        {% if user.is_superuser %}
+        <a style="border-style:outset;border-color:chartreuse;background-color: blueviolet;color:greenyellow;
+        font-size: 25px;text-decoration: none;" href="{% url 'admin:index' %}">administracion</a>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <a style="border-style:outset;border-color:chartreuse;background-color: blueviolet;color:greenyellow;
+        font-size: 25px;text-decoration: none;" href="{% url 'registrarse' %}">Registrarse</a>
+        <a style="border-style:outset;border-color:chartreuse;background-color: blueviolet;color:greenyellow;
+        font-size: 25px;text-decoration: none;" href="{% url 'logearse' %}">Logearse</a>  
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a style="border-style:outset;border-color:chartreuse;background-color: blueviolet;color:greenyellow;
+        font-size: 25px;text-decoration: none;" href="{% url 'deslogeo' %}">Cerrar sesion</a>
+        <a style="border-style:outset;border-color:chartreuse;background-color: blueviolet;color:greenyellow;
+        font-size: 25px;text-decoration: none;" href="{% url 'editarusuario' %}">Editar perfil</a>
+        <a style="border-style:outset;border-color:chartreuse;background-color: blueviolet;color:greenyellow;
+        font-size: 25px;text-decoration: none;" href="{% url 'asignaravatar' %}">Asignar avatar</a>
+        {% endif %}
+    </div>
+    <hr>
+    <section>
+        <header><h2>Producciones</h2></header>
+        <a style="border:5px;border-style:groove;border-radius:4px;font-size:23px;border-color: aqua;color: aqua;
+        background-color: cornflowerblue;text-decoration:none;" href="{% url 'peliculas' %}">Peliculas</a>
+        <a style="border:5px;border-style:groove;border-radius:4px;font-size:23px;border-color: aqua;color: aqua;
+        background-color: cornflowerblue;text-decoration:none;"href="{% url 'series' %}">Series</a>
+        <a style="border:5px;border-style:groove;border-radius:4px;font-size:23px;border-color: aqua;color: aqua;
+        background-color: cornflowerblue;text-decoration:none;"href="{% url 'programas' %}">Programas</a>
+        <a style="border:5px;border-style:groove;border-radius:4px;font-size:23px;border-color: aqua;color: aqua;
+        background-color: cornflowerblue;text-decoration:none;"href="{% url 'documentales' %}">Documentales</a><hr>
+    </section><hr>
+    <section>
+        <a style="color: chartreuse;text-decoration: none;" href="{% url 'acercademi' %}"><h2>Acerca de mi</h2></a>
+    </section>
+</body>
+</html>

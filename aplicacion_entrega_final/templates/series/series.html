@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series</title>
+<p><a style="color: aquamarine;border: 4px;border-style: outset;background-color:darkslateblue;
+text-decoration:none;font-size:25px;"href="{% url 'inicio' %}">Inicio</a></p><hr>
+</head><h2>Aqui se muestran las series</h2>
+<body style="background-color: cadetblue;">
+    <table>
+        {% if user.is_authenticated %}
+        <thead><a style="color: aquamarine;border: 4px;border-style: outset;background-color:darkslateblue;
+        text-decoration:none;font-size:20px;"href="{% url 'añadirserie' %}">Añadir Serie</a>  
+        {% endif %}     
+            <tr>
+                <th><h3>Nombre</h3></th>
+                <th><h3>Productor</h3></th>
+                <th><h3>Temporadas</h3></th>
+                {% if user.is_authenticated %}
+                <th><h3>Acciones</h3></th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for S in object_list %}
+            <tr>
+                <td>{{S.nombre}}</td>
+                <td>{{S.productor}}</td>
+                <td>{{S.temporadas}}</td>
+                {% if user.is_authenticated %}
+                <td>
+                    <a href="{% url 'detallesserie' S.id %}">Detalles</a>
+                    <a href="{% url 'eliminarserie' S.id %}">Eliminar</a>
+                    <a href="{% url 'editarserie' S.id %}">Editar</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

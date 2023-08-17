@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentales</title>
+<p><a style="color: aquamarine;border: 4px;border-style: outset;background-color:darkslateblue;
+text-decoration:none;font-size:25px;" href="{% url 'inicio' %}">Inicio</a></p><hr>
+</head><h2>Aqui se muestran los documentales</h2>
+<body style="background-color: cadetblue;">
+    <table>
+        {% if user.is_authenticated %}
+        <thead><a style="color: aquamarine;border: 4px;border-style: outset;background-color:darkslateblue;
+        text-decoration:none;font-size:20px;" href="{% url 'añadirdocumental' %}">Añadir Documental</a>
+        {% endif %}
+            <tr>
+                <th>Nombre</th>
+                <th>Productor</th>
+                <th>Duracion</th>
+                {% if user.is_authenticated %}
+                <th>Acciones</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for D in object_list %}
+            <tr>
+                <td><h3>{{D.nombre}}</h3></td>
+                <td><h3>{{D.director}}</h3></td>
+                <td><h3>{{D.duracion}}</h3></td>
+                {% if user.is_authenticated %}
+                <td>
+                    <a href="{% url 'detallesdocumental' D.id %}">Detalles</a>
+                    <a href="{% url 'eliminardocumental' D.id %}">Eliminar</a>
+                    <a href="{% url 'editardocumental' D.id %}">Editar</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

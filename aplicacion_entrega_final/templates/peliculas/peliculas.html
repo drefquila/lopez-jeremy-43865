@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peliculas</title>
+<p><a style="color: aquamarine;border: 4px;border-style: outset;background-color:darkslateblue;
+text-decoration:none;font-size:25px;" href="{% url 'inicio' %}">Inicio</a></p><hr>
+</head><h2>Aqui se muestran las peliculas</h2>
+<body style="background-color: dimgray;">
+    <table>
+        {% if user.is_authenticated %}
+        <thead><a style="color: aquamarine;border: 4px;border-style: outset;background-color:darkslateblue;
+        text-decoration:none;font-size:20px;" href="{% url 'añadirpelicula' %}">Añadir pelicula</a>
+        {% endif %}    
+            <tr>
+                <th><h3>Nombre</h3></th>
+                <th><h3>Director</h3></th>
+                <th><h3>Duracion</h3></th>
+                {% if user.is_authenticated %}
+                <th><h3>Acciones</h3></th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for P in object_list %}
+            <tr>
+                <td>{{P.nombre}}</td>
+                <td>{{P.director}}</td>
+                <td>{{P.duracion}}</td>
+                {% if user.is_authenticated %}
+                <td>
+                    <a href="{% url 'detallespelicula' P.id %}">Detalles</a>
+                    <a href="{% url 'eliminarpelicula' P.id %}">Eliminar</a>
+                    <a href="{% url 'editarpelicula' P.id %}">Editar</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
